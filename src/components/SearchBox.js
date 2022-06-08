@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
 
 
 const Container = styled.div`
     display:flex;
     justify-content:flex-end;
     margin-bottom:30px;
+`;
+
+const Form = styled.form`
+    
+    
 `;
 
 const Input = styled.input`
@@ -26,12 +32,23 @@ const Button = styled.button`
 `;
 
 const SearchBox = (props) => {
+
+    const [keyword, setKeyword] = useState("");
+    const dispatch = useDispatch();
+
+    const searchByName = (e) => {
+        e.preventDefault();
+        dispatch({type: "SEARCH_BY_USERNAME", payload: {keyword}});
+    }
+
     return (
         <>
-    <Container>
-        <Input type="text" placeholder="이름검색"/>
-        <Button>찾기</Button>
-    </Container>
+            <Container>
+                <Form onSubmit={searchByName}>
+                    <Input type="text" placeholder="이름검색"/>
+                    <Button type="submit">찾기</Button>
+                </Form>
+            </Container>
         </>
     )
 }

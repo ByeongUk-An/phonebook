@@ -37,7 +37,7 @@ function App() {
     return (
         <>
             <Wrapper>
-                <HeadTitle>나의 연락처 관리</HeadTitle>
+                <HeadTitle>나의 연락처 관리(Redux 꿀잼)</HeadTitle>
                 <Container>
                     <Item>
                         <ContactForm/>

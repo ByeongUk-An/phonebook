@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
 
 const Form = styled.form`
     
@@ -28,17 +29,30 @@ const Button = styled.button`
 `;
 
 const ContactForm = (props) => {
-    return(
-        <Form>
+
+    const [name, setName] = useState();
+    const [phoneNumber, setPhoneNumber] = useState();
+    const dispatch = useDispatch();
+
+    const addContact = (e) => {
+        e.preventDefault();
+        dispatch({type: "ADD_CONTACT", payload: {name, phoneNumber}});
+        setName("");
+        setPhoneNumber("");
+    }
+
+
+    return (
+        <Form onSubmit={(e)=>addContact(e)}>
             <Label>
                 이름
-                <Input type="text" placeholder="이름을 입력해주세요" name="name"/>
+                <Input type="text" placeholder="이름을 입력해주세요" name="name" onChange={(e) => setName(e.target.value)}/>
             </Label>
             <Label>
                 연락처
-                <Input type="number" placeholder="전화번호를 입력해주세요" name="phone"/>
+                <Input type="number" placeholder="전화번호를 입력해주세요" name="phone" onChange={(e) => setPhoneNumber(e.target.value)}/>
             </Label>
-            <Button>생성</Button>
+            <Button type="submit">생성</Button>
         </Form>
     )
 }
