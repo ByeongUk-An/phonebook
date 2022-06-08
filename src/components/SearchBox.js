@@ -45,7 +45,7 @@ const SearchBox = (props) => {
         <>
             <Container>
                 <Form onSubmit={searchByName}>
-                    <Input type="text" placeholder="이름검색"/>
+                    <Input type="text" placeholder="이름검색"   onChange={(event) => setKeyword(event.target.value)}/>
                     <Button type="submit">찾기</Button>
                 </Form>
             </Container>
